@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    1. hash
+    2. history
+    <br />
+
+    <a onclick="go('/home')">Home</a>
+    <a onclick="go('/about')">About</a>
+
+    <div id="html"></div>
+
+    <script>
+        // hash原理
+        // let addFun = () => {
+        //     let html = document.querySelector('#html')
+        //     html.innerHTML = location.hash.slice(1)
+        // }
+        // window.addEventListener('load', addFun)
+        // window.addEventListener('hashchange', addFun)
+
+        // history Api
+        function go (pathname) {
+            let html = document.querySelector('#html')
+            history.pushState({}, null, pathname) // 参数：传入数据，标题，路径
+            html.innerHTML = pathname
+        }
+        window.addEventListener('popstate', () => {
+            // 浏览器前进后退
+            go(location.pathname)
+        })
+
+    </script>
+</body>
+</html>
